@@ -55,9 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="date"
-            android:focusable="false"
-            android:clickable="true"
-            android:maxLines="1">
+            android:focusable="false">
         </EditText>
     </LinearLayout>
     <LinearLayout
@@ -89,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/txtFechaEvento"
+            android:text="@string/txtValorEntrada"
             android:layout_marginLeft="@dimen/marginLeft">
         </TextView>
         <EditText
@@ -108,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="@string/txtGeneroMusical"
+            android:text="@string/txtCalificacion"
             android:layout_marginLeft="@dimen/marginLeft">
         </TextView>
 
@@ -126,9 +124,17 @@
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/btnRegistrar"
-            android:text="Registrar"
+            android:text="@string/registrar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </Button>
+        <Button
+            android:id="@+id/btnLimpiar"
+            android:text="@string/limpiar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4">
         </Button>
     </LinearLayout>
 

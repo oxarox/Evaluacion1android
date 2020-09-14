@@ -5,4 +5,8 @@
     <string name="txtFechaEvento">Fecha del Evento:</string>
     <string name="report_planned_date" >DD/MM/YYYY</string>
     <string name="txtGeneroMusical">Genero Musical</string>
+    <string name="txtValorEntrada">Valor de la Entrada</string>
+    <string name="txtCalificacion">Calificación</string>
+    <string name="registrar">Registrar</string>
+    <string name="limpiar">Limpiar</string>
 </resources>
