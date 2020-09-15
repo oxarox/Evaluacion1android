@@ -137,5 +137,9 @@
             android:layout_weight="4">
         </Button>
     </LinearLayout>
-
+    <ListView
+        android:id="@+id/lvListaConcientos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
 </LinearLayout>
