@@ -2,6 +2,7 @@ package cl.inacap.evaluacion1android;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.DialogInterface;
 
 import android.app.DatePickerDialog;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -29,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Concierto> conciertos = new ArrayList<>();
     private ArrayAdapter<Concierto> conciertoAdapter;
-    private final static String[] listaGenerosMusicales = {"Seleccione","Rock","Jazz","Pop","Reguetoon","Salsa","Metal"};
-    private final static Integer[] listaCalificaciones = {0,1,2,3,4,5,6,7};
+    private final static String[] listaGenerosMusicales = {"Seleccione", "Rock", "Jazz", "Pop", "Reguetoon", "Salsa", "Metal"};
+    private final static Integer[] listaCalificaciones = {0, 1, 2, 3, 4, 5, 6, 7};
     private ArrayAdapter<String> adapterListaGenerosMusicales;
     private ArrayAdapter<Integer> adapterListaCalificaciones;
     private EditText etPlannedDate;
@@ -41,25 +43,26 @@ public class MainActivity extends AppCompatActivity {
     private Spinner spCalificacion;
     private Button btnRegistrar;
     private Button btnLimpiar;
-    private static int[] imaCalificaciones = {}
-
-
+    private ListView lViewPersonalizada;
+    private static int[] imaCalificaciones = {R.drawable.Bronze, R.drawable.Gold,R.drawable.Diamond};
+    private static int[] imaGeneroMusica = {R.drawable.Jazz,R.drawable.Latin, R.drawable.Metal, R.drawable.POP, R.drawable.Reggae, R.drawable.Rock };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        conciertoAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,conciertos);
-        adapterListaGenerosMusicales = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,listaGenerosMusicales);
-        adapterListaCalificaciones = new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_dropdown_item,listaCalificaciones);
+        conciertoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, conciertos);
+        adapterListaGenerosMusicales = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listaGenerosMusicales);
+        adapterListaCalificaciones = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, listaCalificaciones);
         this.etPlannedDate = findViewById(R.id.etPlannedDate);
         this.etNombreArtista = findViewById(R.id.etNombreArtista);
         this.etValorEntrada = findViewById(R.id.etValorEntrada);
         this.spGeneroMusical = findViewById(R.id.spGeneroMusical);
         this.spCalificacion = findViewById(R.id.spCalificacion);
-        this.btnRegistrar =findViewById(R.id.btnRegistrar);
+        this.btnRegistrar = findViewById(R.id.btnRegistrar);
         this.btnLimpiar = findViewById(R.id.btnLimpiar);
+        this.lViewPersonalizada = findViewById(R.id.lvListaConcientos);
         spGeneroMusical.setAdapter(adapterListaGenerosMusicales);
         spCalificacion.setAdapter(adapterListaCalificaciones);
         etPlannedDate.setOnClickListener(new View.OnClickListener() {
@@ -85,32 +88,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 List<String> errores = new ArrayList<>();
-                int valor = 0, dia =0, mes = 0, anno =0;
+                int valor = 0, dia = 0, mes = 0, anno = 0;
                 try {
-                    if (etNombreArtista.getText().toString().isEmpty()){
+                    if (etNombreArtista.getText().toString().isEmpty()) {
                         errores.add("Debe escribir un nombre de artista");
                     }
-                    if (etPlannedDate.getText().toString().isEmpty()){
+                    if (etPlannedDate.getText().toString().isEmpty()) {
                         errores.add("Debe señalar una fecha para el evento");
-                    }else{
-                        dia = Integer.parseInt(etPlannedDate.getText().toString().substring(0,2));
-                        mes = Integer.parseInt(etPlannedDate.getText().toString().substring(3,5));
-                        anno = Integer.parseInt(etPlannedDate.getText().toString().substring(6,10));
+                    } else {
+                        dia = Integer.parseInt(etPlannedDate.getText().toString().substring(0, 2));
+                        mes = Integer.parseInt(etPlannedDate.getText().toString().substring(3, 5));
+                        anno = Integer.parseInt(etPlannedDate.getText().toString().substring(6, 10));
                     }
-                    if (spGeneroMusical.getSelectedItemPosition() == 0){
+                    if (spGeneroMusical.getSelectedItemPosition() == 0) {
                         errores.add("Debe elegir un genero musical");
                     }
-                    if (spCalificacion.getSelectedItemPosition() == 0){
+                    if (spCalificacion.getSelectedItemPosition() == 0) {
                         errores.add("Debe elegir una calificacion mayor a 0");
                     }
                     valor = Integer.parseInt(etValorEntrada.getText().toString());
-                    if (valor < 1){
-                        throw  new NumberFormatException();
+                    if (valor < 1) {
+                        throw new NumberFormatException();
                     }
-                }catch (NumberFormatException ex){
+                } catch (NumberFormatException ex) {
                     errores.add("Debe ingresar valor de la entrada");
                 }
-                if (errores.isEmpty()){
+                if (errores.isEmpty()) {
                     Concierto c = new Concierto();
                     c.setNombreArtista(etNombreArtista.getText().toString());
                     c.setFechaEvento(new Date(anno, mes, dia));
@@ -120,12 +123,13 @@ public class MainActivity extends AppCompatActivity {
                     conciertos.add(c);
                     conciertoAdapter.notifyDataSetChanged();
                     mostrarConcierto();
-                }else{
+                } else {
                     mostrarErrores(errores);
                 }
             }
         });
     }
+
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -136,23 +140,26 @@ public class MainActivity extends AppCompatActivity {
             actualizarInput();
         }
     };
+
     private void actualizarInput() {
         String formatoDeFecha = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(formatoDeFecha, Locale.US);
         etPlannedDate.setText(sdf.format(myCalendar.getTime()));
     }
-    private void mostrarConcierto(){
+
+    private void mostrarConcierto() {
 
     }
-    private void mostrarErrores(List<String> errores){
+
+    private void mostrarErrores(List<String> errores) {
         String mensaje = "";
-        for (String e : errores){
+        for (String e : errores) {
             mensaje += "-" + e + "\n";
         }
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         alertBuilder.setTitle("Error de validacion")
                 .setMessage(mensaje)
-                .setPositiveButton("Aceptar",null)
+                .setPositiveButton("Aceptar", null)
                 .create()
                 .show();
     }
