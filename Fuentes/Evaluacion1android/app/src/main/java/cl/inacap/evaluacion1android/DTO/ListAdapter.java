@@ -13,18 +13,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cl.inacap.evaluacion1android.R;
 
 public class ListAdapter extends BaseAdapter {
 
     private static LayoutInflater inflater = null;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    Locale espanol = new Locale("es","ES");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",espanol);
+    NumberFormat formato = NumberFormat.getNumberInstance(espanol);
 
     Context context;
     List<Concierto> concierto = new ArrayList<>();
@@ -53,7 +58,7 @@ public class ListAdapter extends BaseAdapter {
         try {
             generoMusica.setText(concierto.get(i).getGeneroMusical());
             nombreArtista.setText(concierto.get(i).getNombreArtista());
-            valorEntrada.setText(String.valueOf(concierto.get(i).getValorEntrada()));
+            valorEntrada.setText(formato.format(concierto.get(i).getValorEntrada()));
             fechaEvento.setText(sdf.format(concierto.get(i).getFechaEvento()));
             switch (concierto.get(i).getCalificacion()) {
                 case 1:

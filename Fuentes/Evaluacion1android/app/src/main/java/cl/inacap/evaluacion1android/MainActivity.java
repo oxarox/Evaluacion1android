@@ -106,16 +106,23 @@ public class MainActivity extends AppCompatActivity {
                     errores.add("Debe ingresar valor de la entrada");
                 }
                 if (errores.isEmpty()) {
-                    Concierto c = new Concierto();
-                    c.setNombreArtista(etNombreArtista.getText().toString());
-                    c.setFechaEvento(new Date(anno, mes, dia));
-                    c.setGeneroMusical(listaGenerosMusicales[spGeneroMusical.getSelectedItemPosition()]);
-                    c.setValorEntrada(valor);
-                    c.setCalificacion(listaCalificaciones[spCalificacion.getSelectedItemPosition()]);
-                    conciertos.add(c);
-                    conciertoAdapter.notifyDataSetChanged();
-                    mostrarConcierto();
-                    btnLimpiar.callOnClick();
+                    try {
+                        Locale espanol = new Locale("es", "ES");
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", espanol);
+                        Concierto c = new Concierto();
+                        c.setNombreArtista(etNombreArtista.getText().toString());
+                        //c.setFechaEvento(new Date(anno, mes, dia));
+                        c.setFechaEvento(sdf.parse(dia + "/" + mes + "/" + anno));
+                        c.setGeneroMusical(listaGenerosMusicales[spGeneroMusical.getSelectedItemPosition()]);
+                        c.setValorEntrada(valor);
+                        c.setCalificacion(listaCalificaciones[spCalificacion.getSelectedItemPosition()]);
+                        conciertos.add(c);
+                        conciertoAdapter.notifyDataSetChanged();
+                        mostrarConcierto();
+                        btnLimpiar.callOnClick();
+                    }catch (Exception ex){
+
+                    }
                 } else {
                     mostrarErrores(errores);
                 }

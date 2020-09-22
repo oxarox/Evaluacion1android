@@ -18,8 +18,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:layout_gravity="center_horizontal"
-                android:textSize="@dimen/tamanioTitulo">
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:background="@color/colorPrimaryDark"
+                android:textSize="@dimen/tamanioLPersonalizadoTituloGenero">
             </TextView>
             <ImageView
                 android:id="@+id/imgGeneroMusical"
@@ -39,13 +41,19 @@
                 android:id="@+id/tvNombreArtista"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:background="@color/colorPrimaryDark"
+                android:paddingLeft="10sp"
+                android:textSize="@dimen/tamanioLPersonalizadoTituloGenero">
             </TextView>
             <TextView
                 android:id="@+id/tvValorEntrada"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingLeft="10sp"
+                android:textSize="@dimen/tamanioTitulo">
             </TextView>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,7 +70,10 @@
                     android:id="@+id/tvFechaEvento"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:paddingRight="10sp"
+                    android:gravity="right"
+                    android:textSize="@dimen/tamanioTitulo">
                 </TextView>
             </LinearLayout>
         </LinearLayout>

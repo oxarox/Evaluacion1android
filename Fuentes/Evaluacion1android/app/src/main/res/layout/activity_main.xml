@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@color/backgroundColor"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,9 +14,11 @@
         android:text="@string/titulo"
         android:textSize="@dimen/tamanioTitulo"
         android:gravity="center_horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAllCaps="true"
+        android:textColor="@color/primary_text"
+        android:background="@color/colorPrimary"
         />
     <LinearLayout
         android:layout_marginTop="@dimen/marginTopBase"
@@ -27,7 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/txtNombreArtista"
-            android:layout_marginLeft="@dimen/marginLeft">
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textColor="@color/secondary_text">
         </TextView>
         <EditText
             android:id="@+id/etNombreArtista"
@@ -46,7 +51,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/txtFechaEvento"
-            android:layout_marginLeft="@dimen/marginLeft">
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textStyle="bold"
+            android:textColor="@color/secondary_text">
         </TextView>
         <EditText
             android:id="@+id/etPlannedDate"
@@ -67,7 +74,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/txtGeneroMusical"
-            android:layout_marginLeft="@dimen/marginLeft">
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textStyle="bold"
+            android:textColor="@color/secondary_text">
         </TextView>
 
         <Spinner
@@ -88,7 +97,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/txtValorEntrada"
-            android:layout_marginLeft="@dimen/marginLeft">
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textStyle="bold"
+            android:textColor="@color/secondary_text">
         </TextView>
         <EditText
             android:id="@+id/etValorEntrada"
@@ -107,7 +118,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/txtCalificacion"
-            android:layout_marginLeft="@dimen/marginLeft">
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textStyle="bold"
+            android:textColor="@color/secondary_text">
         </TextView>
 
         <Spinner
@@ -127,6 +140,7 @@
             android:text="@string/registrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
             android:layout_weight="1">
         </Button>
         <Button
@@ -134,6 +148,7 @@
             android:text="@string/limpiar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
             android:layout_weight="4">
         </Button>
     </LinearLayout>
