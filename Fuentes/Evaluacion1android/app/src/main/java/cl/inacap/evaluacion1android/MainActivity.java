@@ -2,7 +2,6 @@ package cl.inacap.evaluacion1android;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -12,14 +11,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import cl.inacap.evaluacion1android.DTO.Concierto;
 import cl.inacap.evaluacion1android.DTO.ListAdapter;
 
@@ -40,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnRegistrar;
     private Button btnLimpiar;
     private ListView lViewPersonalizada;
-    private static int[] imaCalificaciones = {R.drawable.bronze, R.drawable.gold,R.drawable.diamond};
     private static int[] imaGeneroMusica = {R.drawable.rock,R.drawable.jazz, R.drawable.pop, R.drawable.reggae, R.drawable.latin, R.drawable.metal};
-
+    private static int[] imaCalificaciones = {R.drawable.bronce, R.drawable.oro,R.drawable.diamante};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,12 +115,12 @@ public class MainActivity extends AppCompatActivity {
                     conciertos.add(c);
                     conciertoAdapter.notifyDataSetChanged();
                     mostrarConcierto();
+                    btnLimpiar.callOnClick();
                 } else {
                     mostrarErrores(errores);
                 }
             }
         });
-        lViewPersonalizada.setAdapter(new ListAdapter(this,conciertos,imaCalificaciones,imaGeneroMusica));
     }
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -145,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void mostrarConcierto() {
-
+        lViewPersonalizada.setAdapter(new ListAdapter(this,conciertos,imaCalificaciones,imaGeneroMusica));
     }
 
     private void mostrarErrores(List<String> errores) {

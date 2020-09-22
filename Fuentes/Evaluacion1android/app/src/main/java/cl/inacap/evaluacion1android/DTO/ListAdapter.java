@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class ListAdapter extends BaseAdapter {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     Context context;
-    List<Concierto> concierto;
+    List<Concierto> concierto = new ArrayList<>();
     int[] calificacionImg;
     int[] generoMusicalmg;
 
@@ -49,54 +50,59 @@ public class ListAdapter extends BaseAdapter {
         ImageView imgGeneroMusica = (ImageView) vista.findViewById(R.id.imgGeneroMusical);
         ImageView imgCalificacion = (ImageView) vista.findViewById(R.id.imgCalificacion);
 
-        generoMusica.setText(concierto.get(i).getGeneroMusical());
-        nombreArtista.setText(concierto.get(i).getNombreArtista());
-        valorEntrada.setText(concierto.get(i).getValorEntrada());
-        fechaEvento.setText(sdf.format(concierto.get(i).getFechaEvento()));
-        switch (concierto.get(i).getCalificacion()){
-            case 1:
-            case 2:
-            case 3:
-                imgCalificacion.setImageResource(calificacionImg[0]);
-                imgCalificacion.setTag(0);
-                break;
-            case 4:
-            case 5:
-                imgCalificacion.setImageResource(calificacionImg[1]);
-                imgCalificacion.setTag(1);
-                break;
-            case 6:
-            case 7:
-                imgCalificacion.setImageResource(calificacionImg[2]);
-                imgCalificacion.setTag(2);
-                break;
+        try {
+            generoMusica.setText(concierto.get(i).getGeneroMusical());
+            nombreArtista.setText(concierto.get(i).getNombreArtista());
+            valorEntrada.setText(String.valueOf(concierto.get(i).getValorEntrada()));
+            fechaEvento.setText(sdf.format(concierto.get(i).getFechaEvento()));
+            switch (concierto.get(i).getCalificacion()) {
+                case 1:
+                case 2:
+                case 3:
+                    imgCalificacion.setImageResource(calificacionImg[0]);
+                    imgCalificacion.setTag(0);
+                    break;
+                case 4:
+                case 5:
+                    imgCalificacion.setImageResource(calificacionImg[1]);
+                    imgCalificacion.setTag(1);
+                    break;
+                case 6:
+                case 7:
+                    imgCalificacion.setImageResource(calificacionImg[2]);
+                    imgCalificacion.setTag(2);
+                    break;
+            }
+            switch (concierto.get(i).getGeneroMusical()) {
+                case "Rock":
+                    imgGeneroMusica.setImageResource(generoMusicalmg[0]);
+                    imgGeneroMusica.setTag(0);
+                    break;
+                case "Jazz":
+                    imgGeneroMusica.setImageResource(generoMusicalmg[1]);
+                    imgGeneroMusica.setTag(1);
+                    break;
+                case "Pop":
+                    imgGeneroMusica.setImageResource(generoMusicalmg[2]);
+                    imgGeneroMusica.setTag(2);
+                    break;
+                case "Reguetoon":
+                    imgGeneroMusica.setImageResource(generoMusicalmg[3]);
+                    imgGeneroMusica.setTag(3);
+                    break;
+                case "Salsa":
+                    imgGeneroMusica.setImageResource(generoMusicalmg[4]);
+                    imgGeneroMusica.setTag(4);
+                    break;
+                case "Metal":
+                    imgGeneroMusica.setImageResource(generoMusicalmg[5]);
+                    imgGeneroMusica.setTag(5);
+                    break;
+            }
+        }catch (IndexOutOfBoundsException ex){
+
         }
-        switch (concierto.get(i).getGeneroMusical()){
-            case "Rock":
-                imgGeneroMusica.setImageResource(generoMusicalmg[0]);
-                imgGeneroMusica.setTag(0);
-                break;
-            case "Jazz":
-                imgGeneroMusica.setImageResource(generoMusicalmg[1]);
-                imgGeneroMusica.setTag(1);
-                break;
-            case "Pop":
-                imgGeneroMusica.setImageResource(generoMusicalmg[2]);
-                imgGeneroMusica.setTag(2);
-                break;
-            case "Reguetoon":
-                imgGeneroMusica.setImageResource(generoMusicalmg[3]);
-                imgGeneroMusica.setTag(3);
-                break;
-            case "Salsa":
-                imgGeneroMusica.setImageResource(generoMusicalmg[4]);
-                imgGeneroMusica.setTag(4);
-                break;
-            case "Metal":
-                imgGeneroMusica.setImageResource(generoMusicalmg[5]);
-                imgGeneroMusica.setTag(5);
-                break;
-        }
+
 
         return vista;
     }

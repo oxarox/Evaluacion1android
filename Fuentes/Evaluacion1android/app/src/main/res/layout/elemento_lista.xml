@@ -17,13 +17,17 @@
                 android:id="@+id/tvGeneroMusical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2">
+                android:layout_weight="2"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/tamanioTitulo">
             </TextView>
             <ImageView
                 android:id="@+id/imgGeneroMusical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:adjustViewBounds="true">
             </ImageView>
         </LinearLayout>
         <LinearLayout
