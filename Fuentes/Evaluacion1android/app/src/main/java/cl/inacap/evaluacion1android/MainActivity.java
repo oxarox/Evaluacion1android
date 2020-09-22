@@ -3,20 +3,15 @@ package cl.inacap.evaluacion1android;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +21,7 @@ import java.util.List;
 import java.util.Locale;
 
 import cl.inacap.evaluacion1android.DTO.Concierto;
+import cl.inacap.evaluacion1android.DTO.ListAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnRegistrar;
     private Button btnLimpiar;
     private ListView lViewPersonalizada;
-    private static int[] imaCalificaciones = {R.drawable.Bronze, R.drawable.Gold,R.drawable.Diamond};
-    private static int[] imaGeneroMusica = {R.drawable.Jazz,R.drawable.Latin, R.drawable.Metal, R.drawable.POP, R.drawable.Reggae, R.drawable.Rock };
+    private static int[] imaCalificaciones = {R.drawable.bronze, R.drawable.gold,R.drawable.diamond};
+    private static int[] imaGeneroMusica = {R.drawable.rock,R.drawable.jazz, R.drawable.pop, R.drawable.reggae, R.drawable.latin, R.drawable.metal};
 
 
     @Override
@@ -128,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        lViewPersonalizada.setAdapter(new ListAdapter(this,conciertos,imaCalificaciones,imaGeneroMusica));
     }
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
